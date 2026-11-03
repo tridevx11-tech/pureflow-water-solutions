@@ -212,15 +212,15 @@ export function RoutesSection() {
 
   const save = (record: EntityRecord) => {
     const item: DeliveryRoute = {
-      id: (record.id as string) || `r${state.counter + 1}`,
-      name: record.name as string,
-      city: record.city as string,
-      driver: record.driver as string,
-      tempoNumber: record.tempoNumber as string,
-      dealerCount: Number(record.dealerCount),
-      pendingOrders: Number(record.pendingOrders),
-      todaysOrders: Number(record.todaysOrders),
-      totalCapacity: record.totalCapacity as string,
+      id: (field(record, "id")) || `r${state.counter + 1}`,
+      name: field(record, "name"),
+      city: field(record, "city"),
+      driver: field(record, "driver"),
+      tempoNumber: field(record, "tempoNumber"),
+      dealerCount: Number(field(record, "dealerCount")),
+      pendingOrders: Number(field(record, "pendingOrders")),
+      todaysOrders: Number(field(record, "todaysOrders")),
+      totalCapacity: field(record, "totalCapacity"),
       deliveryStatus: record.deliveryStatus as DeliveryRoute["deliveryStatus"],
     };
     dispatch({ type: "route/save", item });
@@ -284,7 +284,7 @@ export function RoutesSection() {
       </div>
       {editing && (
         <EntityFormModal
-          title={editing.id ? "Edit Route" : "Add Route"}
+          title={field(editing, "id") ? "Edit Route" : "Add Route"}
           fields={fields(editing)}
           value={editing}
           onClose={() => setEditing(null)}
@@ -319,17 +319,17 @@ export function DealersSection() {
 
   const save = (record: EntityRecord) => {
     const item: Dealer = {
-      id: (record.id as string) || `d${state.counter + 1}`,
-      name: record.name as string,
-      owner: record.owner as string,
-      mobile: record.mobile as string,
-      email: record.email as string,
-      gst: record.gst as string,
-      city: record.city as string,
-      routeId: record.routeId as string,
-      monthlyOrders: Number(record.monthlyOrders),
+      id: (field(record, "id")) || `d${state.counter + 1}`,
+      name: field(record, "name"),
+      owner: field(record, "owner"),
+      mobile: field(record, "mobile"),
+      email: field(record, "email"),
+      gst: field(record, "gst"),
+      city: field(record, "city"),
+      routeId: field(record, "routeId"),
+      monthlyOrders: Number(field(record, "monthlyOrders")),
       status: record.status as Dealer["status"],
-      lastOrder: record.lastOrder as string,
+      lastOrder: field(record, "lastOrder"),
     };
     dispatch({ type: "dealer/save", item });
     setEditing(null);
@@ -434,7 +434,7 @@ export function DealersSection() {
         </div>
       )}
 
-      {editing && <EntityFormModal title={editing.id ? "Edit Dealer" : "Add Dealer"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <EntityFormModal title={field(editing, "id") ? "Edit Dealer" : "Add Dealer"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }
@@ -449,14 +449,14 @@ export function ProductsSection() {
 
   const save = (record: EntityRecord) => {
     const item: Product = {
-      id: (record.id as string) || `p${state.counter + 1}`,
-      name: record.name as string,
-      capacity: record.capacity as string,
-      price: Number(record.price),
-      unit: record.unit as string,
-      description: record.description as string,
-      image: record.image as string,
-      tag: (record.tag as string) || undefined,
+      id: (field(record, "id")) || `p${state.counter + 1}`,
+      name: field(record, "name"),
+      capacity: field(record, "capacity"),
+      price: Number(field(record, "price")),
+      unit: field(record, "unit"),
+      description: field(record, "description"),
+      image: field(record, "image"),
+      tag: (field(record, "tag")) || undefined,
     };
     dispatch({ type: "product/save", item });
     setEditing(null);
@@ -503,7 +503,7 @@ export function ProductsSection() {
           </div>
         ))}
       </div>
-      {editing && <EntityFormModal title={editing.id ? "Edit Product" : "Add Product"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <EntityFormModal title={field(editing, "id") ? "Edit Product" : "Add Product"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }
@@ -521,11 +521,11 @@ export function DriversSection() {
 
   const save = (record: EntityRecord) => {
     const item: Driver = {
-      id: (record.id as string) || `dr${state.counter + 1}`,
-      name: record.name as string,
-      phone: record.phone as string,
-      license: record.license as string,
-      routeName: record.routeName as string,
+      id: (field(record, "id")) || `dr${state.counter + 1}`,
+      name: field(record, "name"),
+      phone: field(record, "phone"),
+      license: field(record, "license"),
+      routeName: field(record, "routeName"),
       status: record.status as Driver["status"],
     };
     dispatch({ type: "driver/save", item });
@@ -576,7 +576,7 @@ export function DriversSection() {
           </tbody>
         </table>
       </div>
-      {editing && <EntityFormModal title={editing.id ? "Edit Driver" : "Add Driver"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <EntityFormModal title={field(editing, "id") ? "Edit Driver" : "Add Driver"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }
@@ -589,11 +589,11 @@ export function TemposSection() {
 
   const save = (record: EntityRecord) => {
     const item: Tempo = {
-      id: (record.id as string) || `t${state.counter + 1}`,
-      number: record.number as string,
-      driver: record.driver as string,
-      capacity: record.capacity as string,
-      currentRoute: record.currentRoute as string,
+      id: (field(record, "id")) || `t${state.counter + 1}`,
+      number: field(record, "number"),
+      driver: field(record, "driver"),
+      capacity: field(record, "capacity"),
+      currentRoute: field(record, "currentRoute"),
       status: record.status as Tempo["status"],
     };
     dispatch({ type: "tempo/save", item });
@@ -644,7 +644,7 @@ export function TemposSection() {
           </tbody>
         </table>
       </div>
-      {editing && <EntityFormModal title={editing.id ? "Edit Tempo" : "Add Tempo"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <EntityFormModal title={field(editing, "id") ? "Edit Tempo" : "Add Tempo"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }

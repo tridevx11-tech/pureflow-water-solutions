@@ -107,11 +107,11 @@ export function GalleryAdminSection() {
 
   const save = (record: EntityRecord) => {
     const item: GalleryItem = {
-      id: (record.id as string) || `g${state.counter + 1}`,
-      title: record.title as string,
-      category: record.category as string,
-      image: record.image as string,
-      description: record.description as string,
+      id: (field(record, "id")) || `g${state.counter + 1}`,
+      title: field(record, "title"),
+      category: field(record, "category"),
+      image: field(record, "image"),
+      description: field(record, "description"),
     };
     dispatch({ type: "gallery/save", item });
     setEditing(null);
@@ -149,7 +149,7 @@ export function GalleryAdminSection() {
           </div>
         ))}
       </div>
-      {editing && <EntityFormModal title={editing.id ? "Edit Photo" : "Add Photo"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <EntityFormModal title={field(editing, "id") ? "Edit Photo" : "Add Photo"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }
@@ -164,12 +164,12 @@ export function TestimonialsAdminSection() {
 
   const save = (record: EntityRecord) => {
     const item: Testimonial = {
-      id: (record.id as string) || `ts${state.counter + 1}`,
-      name: record.name as string,
-      role: record.role as string,
-      city: record.city as string,
-      rating: Number(record.rating),
-      text: record.text as string,
+      id: (field(record, "id")) || `ts${state.counter + 1}`,
+      name: field(record, "name"),
+      role: field(record, "role"),
+      city: field(record, "city"),
+      rating: Number(field(record, "rating")),
+      text: field(record, "text"),
       reviewerType: record.reviewerType as Testimonial["reviewerType"],
     };
     dispatch({ type: "testimonial/save", item });
@@ -214,7 +214,7 @@ export function TestimonialsAdminSection() {
           </div>
         ))}
       </div>
-      {editing && <EntityFormModal title={editing.id ? "Edit Review" : "Add Review"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <EntityFormModal title={field(editing, "id") ? "Edit Review" : "Add Review"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }
@@ -229,11 +229,11 @@ export function BannersSection() {
 
   const save = (record: EntityRecord) => {
     const item: BannerSlide = {
-      id: (record.id as string) || `b${state.counter + 1}`,
-      title: record.title as string,
-      subtitle: record.subtitle as string,
-      image: record.image as string,
-      active: record.active === "true",
+      id: (field(record, "id")) || `b${state.counter + 1}`,
+      title: field(record, "title"),
+      subtitle: field(record, "subtitle"),
+      image: field(record, "image"),
+      active: field(record, "active") === "true",
     };
     dispatch({ type: "banner/save", item });
     if (item.active) {
@@ -272,7 +272,7 @@ export function BannersSection() {
           </div>
         ))}
       </div>
-      {editing && <EntityFormModal title={editing.id ? "Edit Banner" : "Add Banner"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <EntityFormModal title={field(editing, "id") ? "Edit Banner" : "Add Banner"} fields={fields} value={editing} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }

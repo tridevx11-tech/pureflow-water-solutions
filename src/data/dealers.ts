@@ -1,0 +1,22 @@
+import type { Dealer } from "./types";
+
+export const dealers: Dealer[] = [
+  { id: "d1", name: "Shree Ganesh Water Point", owner: "Mahesh Bhosale", mobile: "9822011234", email: "ganeshwp@example.com", gst: "27ABCDE1234F1Z5", city: "Pune", routeId: "r1", monthlyOrders: 62, status: "Active", lastOrder: "2026-11-02" },
+  { id: "d2", name: "Kothrud Aqua Agencies", owner: "Sanjay Tambe", mobile: "9822044556", email: "kothrud.aqua@example.com", gst: "27BBCDE2234F1Z2", city: "Pune", routeId: "r1", monthlyOrders: 48, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d3", name: "Hadapsar Fresh Water", owner: "Rekha Salunkhe", mobile: "9822077889", email: "hadapsar.fw@example.com", gst: "27CCCDE3234F1Z9", city: "Pune", routeId: "r1", monthlyOrders: 55, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d4", name: "Dharampeth Water House", owner: "Nikhil Deshmukh", mobile: "9123012345", email: "dharampeth.wh@example.com", gst: "27DDCDE4234F1Z3", city: "Nagpur", routeId: "r2", monthlyOrders: 71, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d5", name: "Sitabuldi Aqua Mart", owner: "Pooja Raut", mobile: "9123045678", email: "sitabuldi.am@example.com", gst: "27EECDE5234F1Z6", city: "Nagpur", routeId: "r2", monthlyOrders: 66, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d6", name: "Manish Coca Service", owner: "Manish Gupta", mobile: "9123078901", email: "manish.cs@example.com", gst: "27FFCDE6234F1Z1", city: "Nagpur", routeId: "r2", monthlyOrders: 39, status: "Active", lastOrder: "2026-11-02" },
+  { id: "d7", name: "Andheri Beverage Hub", owner: "Farhan Ali", mobile: "9930012345", email: "andheri.bh@example.com", gst: "27GGCDE7234F1Z4", city: "Mumbai", routeId: "r3", monthlyOrders: 88, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d8", name: "Dadar Pure Drops", owner: "Sunita Mhatre", mobile: "9930045678", email: "dadar.pd@example.com", gst: "27HHCDE8234F1Z7", city: "Mumbai", routeId: "r3", monthlyOrders: 74, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d9", name: "Thane Water World", owner: "Ramesh Naik", mobile: "9930078901", email: "thane.ww@example.com", gst: "27IICDE9234F1Z0", city: "Mumbai", routeId: "r3", monthlyOrders: 59, status: "Active", lastOrder: "2026-11-01" },
+  { id: "d10", name: "Solapur Zilla Supply", owner: "Girish Suryavanshi", mobile: "9765012345", email: "solapur.zs@example.com", gst: "27JJCDE1234F1Z2", city: "Solapur", routeId: "r4", monthlyOrders: 31, status: "Active", lastOrder: "2026-11-02" },
+  { id: "d11", name: "Hotgi Road Aqua", owner: "Kavita More", mobile: "9765045678", email: "hotgi.aqua@example.com", gst: "27KKCDE2234F1Z5", city: "Solapur", routeId: "r4", monthlyOrders: 27, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d12", name: "Vijayapura City Water", owner: "Basavaraj Itagi", mobile: "9845012345", email: "vjm.citywater@example.com", gst: "29LLCDE3234F1Z8", city: "Vijayapura", routeId: "r5", monthlyOrders: 44, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d13", name: "Bagalkot Onyx Traders", owner: "Shruti Hosamani", mobile: "9845045678", email: "bagalkot.onyx@example.com", gst: "29MMCDE4234F1Z1", city: "Vijayapura", routeId: "r5", monthlyOrders: 36, status: "Active", lastOrder: "2026-11-02" },
+  { id: "d14", name: "Belagavi Blue Springs", owner: "Prakash Nayak", mobile: "9731012345", email: "blacksprings.bl@example.com", gst: "29NNCDE5234F1Z4", city: "Belagavi", routeId: "r6", monthlyOrders: 41, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d15", name: "Khanapur Water Point", owner: "Zoya Shaikh", mobile: "9731045678", email: "khanapur.wp@example.com", gst: "29OOCDE6234F1Z7", city: "Belagavi", routeId: "r6", monthlyOrders: 29, status: "Active", lastOrder: "2026-11-01" },
+  { id: "d16", name: "Hubli Aqua Center", owner: "Vinay Kulkarni", mobile: "9646012345", email: "hubli.ac@example.com", gst: "29PPCDE7234F1Z0", city: "Hubballi", routeId: "r7", monthlyOrders: 33, status: "Active", lastOrder: "2026-11-03" },
+  { id: "d17", name: "Dharwad Fresh Supply", owner: "Arpita Hegde", mobile: "9646045678", email: "dharwad.fs@example.com", gst: "29QQCDE8234F1Z3", city: "Hubballi", routeId: "r7", monthlyOrders: 22, status: "Inactive", lastOrder: "2026-10-28" },
+  { id: "d18", name: "Gokul Shirgaon Enterprises", owner: "Tushar Salvi", mobile: "9822090112", email: "gokul.ent@example.com", gst: "27RRCDE9234F1Z6", city: "Pune", routeId: "r1", monthlyOrders: 25, status: "Active", lastOrder: "2026-11-02" },
+];

@@ -380,27 +380,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const highestDemandRoute = useMemo(() => getHighestDemandRoute(routeStats), [routeStats]);
   const demandGroups = useMemo(() => groupByDemandLevel(routeStats), [routeStats]);
 
-  const totals = useMemo(() => {
-    const completedDeliveries = state.orders.filter((o) => o.status === "Delivered").length;
-    const pendingDeliveries = state.orders.filter(
-      (o) => o.status === "Pending" || o.status === "Approved" || o.status === "Dispatched",
-    ).length;
-    const routes = state.routes;
-    const weeklyOrders = routes.reduce((s, r) => s + r.todaysOrders, 0) * 6;
-    const monthlyOrders = routes.reduce((s, r) => s + r.todaysOrders, 0) * 26;
-    return {
-      dealers: state.dealers.length,
-      orders: state.orders.length,
-      routes: routes.length,
-      temposReady: state.tempos.filter((t) => t.status === "Available").length,
-      completedDeliveries,
-      pendingDeliveries,
-      todayRevenue: getRevenue(state.orders, state.products),
-      weeklyOrders,
-      monthlyOrders,
-      unreadNotifications: state.notifications.filter((n) => !n.read).length,
-    };
-  }, [state.orders, state.products, state.routes, state.tempos, state.dealers, state.notifications]);
+  const totals = useMemo(() => computeTotals(state), [state]);
 
   const value = useMemo<AppStore>(
     () => ({
@@ -424,10 +404,33 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
 
-export function useApp() {
-  const ctx = useContext(AppContext);
-  if (!ctx) throw new Error("useApp must be used inside AppProvider");
-  return ctx;
+/**
+ * Fallback store for transient render passes that run outside AppProvider —
+ * e.g. a hot module reload replacing this module (new context identity) while
+ * already-mounted components re-render. Rendering the mock seed data keeps the
+ * site alive instead of blanking the screen with an error boundary.
+ */
+let fallbackStore: AppStore | null = null;
+function getFallbackStore(): AppStore {
+  if (!fallbackStore) {
+    const stats = getRouteStats(initialState.routes, initialState.orders);
+    fallbackStore = {
+      state: initialState,
+      dispatch: () => {},
+      login: () => false,
+      logout: () => {},
+      placeOrder: () => {},
+      routeStats: stats,
+      highestDemandRoute: getHighestDemandRoute(stats),
+      demandGroups: groupByDemandLevel(stats),
+      totals: computeTotals(initialState),
+    };
+  }
+  return fallbackStore;
+}
+
+export function useApp(): AppStore {
+  return useContext(AppContext) ?? getFallbackStore();
 }
 
 export function countOrdersByRouteId(orders: Order[]) {

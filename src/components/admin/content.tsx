@@ -104,7 +104,7 @@ export function GalleryAdminSection() {
   const { state, dispatch } = useApp();
   const [editing, setEditing] = useState<EntityRecord | null>(null);
 
-  const openNew = () => setEditing({ id: "", title: "", category: "Manufacturing Plant", image: galleryImageOptions[0].value, description: "" });
+  const openNew = () => setEditing({ id: "", title: "", category: "Manufacturing Plant", image: galleryImageOptions[0]!.value, description: "" });
 
   const save = (record: EntityRecord) => {
     const item: GalleryItem = {

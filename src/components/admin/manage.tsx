@@ -450,14 +450,14 @@ export function ProductsSection() {
 
   const save = (record: EntityRecord) => {
     const item: Product = {
-      id: (field(record, "id")) || `p${state.counter + 1}`,
+      id: field(record, "id") || `p${state.counter + 1}`,
       name: field(record, "name"),
       capacity: field(record, "capacity"),
       price: Number(field(record, "price")),
       unit: field(record, "unit"),
       description: field(record, "description"),
       image: field(record, "image"),
-      tag: (field(record, "tag")) || undefined,
+      ...(field(record, "tag") ? { tag: field(record, "tag") } : {}),
     };
     dispatch({ type: "product/save", item });
     setEditing(null);

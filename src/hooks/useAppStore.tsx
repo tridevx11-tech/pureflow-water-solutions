@@ -135,6 +135,27 @@ const initialState: AppState = {
   counter: 100,
 };
 
+function computeTotals(state: AppState): AppStore["totals"] {
+  const completedDeliveries = state.orders.filter((o) => o.status === "Delivered").length;
+  const pendingDeliveries = state.orders.filter(
+    (o) => o.status === "Pending" || o.status === "Approved" || o.status === "Dispatched",
+  ).length;
+  const weeklyOrders = state.routes.reduce((s, r) => s + r.todaysOrders, 0) * 6;
+  const monthlyOrders = state.routes.reduce((s, r) => s + r.todaysOrders, 0) * 26;
+  return {
+    dealers: state.dealers.length,
+    orders: state.orders.length,
+    routes: state.routes.length,
+    temposReady: state.tempos.filter((t) => t.status === "Available").length,
+    completedDeliveries,
+    pendingDeliveries,
+    todayRevenue: getRevenue(state.orders, state.products),
+    weeklyOrders,
+    monthlyOrders,
+    unreadNotifications: state.notifications.filter((n) => !n.read).length,
+  };
+}
+
 function pushNotification(
   state: AppState,
   type: NotificationType,

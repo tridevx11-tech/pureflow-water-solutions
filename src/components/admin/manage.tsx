@@ -237,8 +237,7 @@ export function RoutesSection() {
     { key: "todaysOrders", label: "Today's Orders", type: "number" as const },
     { key: "totalCapacity", label: "Total Capacity" },
     { key: "deliveryStatus", label: "Delivery Status", type: "select" as const, options: ["On Schedule", "In Transit", "Completed", "Delayed"].map((s) => ({ value: s, label: s })) },
-    { key: "id", label: "", type: "text" as const, options: [] },
-  ].filter((f) => f.label !== "" || (r.id as string) === "");
+  ];
 
   return (
     <div>

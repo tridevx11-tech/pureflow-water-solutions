@@ -8,6 +8,7 @@ import {
   FilterSelect,
   IconBtn,
   SectionToolbar,
+  field,
   type EntityRecord,
 } from "@/components/admin/shared";
 import type { BannerSlide, GalleryItem, Testimonial } from "@/data/types";
@@ -170,7 +171,7 @@ export function TestimonialsAdminSection() {
       city: field(record, "city"),
       rating: Number(field(record, "rating")),
       text: field(record, "text"),
-      reviewerType: record.reviewerType as Testimonial["reviewerType"],
+      reviewerType: field(record, "reviewerType") as Testimonial["reviewerType"],
     };
     dispatch({ type: "testimonial/save", item });
     setEditing(null);

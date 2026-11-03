@@ -11,6 +11,7 @@ import {
   Modal,
   SectionToolbar,
   StatusPill,
+  field,
   type EntityRecord,
 } from "@/components/admin/shared";
 import type { Dealer, DeliveryRoute, Driver, Order, OrderStatus, Product, Tempo } from "@/data/types";
@@ -221,7 +222,7 @@ export function RoutesSection() {
       pendingOrders: Number(field(record, "pendingOrders")),
       todaysOrders: Number(field(record, "todaysOrders")),
       totalCapacity: field(record, "totalCapacity"),
-      deliveryStatus: record.deliveryStatus as DeliveryRoute["deliveryStatus"],
+      deliveryStatus: field(record, "deliveryStatus") as DeliveryRoute["deliveryStatus"],
     };
     dispatch({ type: "route/save", item });
     setEditing(null);
@@ -328,7 +329,7 @@ export function DealersSection() {
       city: field(record, "city"),
       routeId: field(record, "routeId"),
       monthlyOrders: Number(field(record, "monthlyOrders")),
-      status: record.status as Dealer["status"],
+      status: field(record, "status") as Dealer["status"],
       lastOrder: field(record, "lastOrder"),
     };
     dispatch({ type: "dealer/save", item });
@@ -526,7 +527,7 @@ export function DriversSection() {
       phone: field(record, "phone"),
       license: field(record, "license"),
       routeName: field(record, "routeName"),
-      status: record.status as Driver["status"],
+      status: field(record, "status") as Driver["status"],
     };
     dispatch({ type: "driver/save", item });
     setEditing(null);
@@ -594,7 +595,7 @@ export function TemposSection() {
       driver: field(record, "driver"),
       capacity: field(record, "capacity"),
       currentRoute: field(record, "currentRoute"),
-      status: record.status as Tempo["status"],
+      status: field(record, "status") as Tempo["status"],
     };
     dispatch({ type: "tempo/save", item });
     setEditing(null);

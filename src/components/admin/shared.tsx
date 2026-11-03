@@ -81,6 +81,12 @@ export interface FieldDef {
 
 export type EntityRecord = Record<string, string | number | boolean>;
 
+/** Typed accessor for EntityRecord — satisfies noPropertyAccessFromIndexSignature. */
+export function field(record: EntityRecord, key: string): string {
+  const v = record[key];
+  return v === undefined || v === null ? "" : String(v);
+}
+
 export function EntityFormModal({
   title,
   fields,

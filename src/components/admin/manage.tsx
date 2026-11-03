@@ -227,7 +227,7 @@ export function RoutesSection() {
     setEditing(null);
   };
 
-  const fields = (r: EntityRecord) => [
+  const fields = [
     { key: "name", label: "Route Name" },
     { key: "city", label: "City" },
     { key: "driver", label: "Assigned Driver", type: "select" as const, options: state.drivers.map((d) => ({ value: d.name, label: d.name })) },

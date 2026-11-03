@@ -63,7 +63,7 @@ export function OrdersSection() {
       routeId: dealer.routeId,
       productId: newOrder.productId,
       quantity: Math.max(1, Number(newOrder.quantity)),
-      date: newOrder.date || undefined,
+      ...(newOrder.date ? { date: newOrder.date } : {}),
     });
     setAdding(false);
   };
@@ -286,7 +286,7 @@ export function RoutesSection() {
       {editing && (
         <EntityFormModal
           title={field(editing, "id") ? "Edit Route" : "Add Route"}
-          fields={fields(editing)}
+          fields={fields}
           value={editing}
           onClose={() => setEditing(null)}
           onSave={save}
@@ -446,7 +446,7 @@ export function ProductsSection() {
   const { state, dispatch } = useApp();
   const [editing, setEditing] = useState<EntityRecord | null>(null);
 
-  const openNew = () => setEditing({ id: "", name: "", capacity: "", price: 20, unit: "per bottle", description: "", tag: "", image: productImageOptions[0].value });
+  const openNew = () => setEditing({ id: "", name: "", capacity: "", price: 20, unit: "per bottle", description: "", tag: "", image: productImageOptions[0]!.value });
 
   const save = (record: EntityRecord) => {
     const item: Product = {

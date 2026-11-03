@@ -31,7 +31,7 @@ export function StatusPill({ status }: { status: string }) {
   return <Pill tone={statusTone[status] ?? "neutral"}>{status}</Pill>;
 }
 
-export function StatCard({ icon, label, value, hint, highlight = false }: { icon: string; label: string; value: ReactNode; hint?: string; highlight?: boolean }) {
+export function StatCard({ icon, label, value, hint, highlight = false }: { icon: string; label: string; value: ReactNode; hint?: string | undefined; highlight?: boolean }) {
   return (
     <div className={`card-soft card-lift p-5 ${highlight ? "ring-2 ring-water" : ""}`}>
       <div className="flex items-center justify-between">
